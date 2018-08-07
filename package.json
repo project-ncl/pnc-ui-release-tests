@@ -1,0 +1,19 @@
+{
+  "name": "pnc-ui-release-tests",
+  "version": "1.4.0",
+  "description": "Automated release tests for PNC through Web UI",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/project-ncl/pnc-ui-release-tests.git"
+  },
+  "author": "Alex Creasy",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/project-ncl/pnc-ui-release-tests/issues"
+  },
+  "homepage": "https://github.com/project-ncl/pnc-ui-release-tests#readme"
+}
