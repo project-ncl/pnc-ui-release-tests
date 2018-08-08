@@ -35,13 +35,13 @@ Example:
 
 ### Setup
 
-1) Set parameters as [described above](#setting-test-parameters) except _seleniumAddress_ - ignore that param.
+Set parameters as [described above](#setting-test-parameters) except _seleniumAddress_ - ignore that param.
 
-2) Update selenium webdriver:
+Update selenium webdriver:
 
     npm run webdriver:update
 
-3) Start selenium server (you will want to run this in a separate terminal, or run in background):
+Start selenium server (you will want to run this in a separate terminal, or run in background):
 
     npm run webdriver:start
 
@@ -67,9 +67,9 @@ Example:
 
 In your CI script you will want to:
 
-1) Set all params as [described above](#setting-test-parameters)
+Set all params as [described above](#setting-test-parameters)
 
-2) Execute the release test suite:
+Execute the release test suite:
 
     npm run test-suite:release
 
