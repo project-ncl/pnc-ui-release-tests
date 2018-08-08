@@ -5,7 +5,9 @@
   "config": {
     "seleniumAddress": "http://localhost:4444/wd/hub",
     "pncUiAddress": "http://localhost:9000",
-    "pncRestAddress": "http://localhost:9000/rest"
+    "pncRestAddress": "http://localhost:9000/rest",
+    "pncUser": "user",
+    "pncPassword": "password"
   },
   "scripts": {
     "test": "npm run lint",

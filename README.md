@@ -1,27 +1,41 @@
-PNC UI Release Tests
-====================
+# PNC UI Release Tests
 
 Automated release tests for PNC through Web UI
 
-Prerequisites
--------------
+## Prerequisites
 
     npm
 
-Setup
------
+## Setup
 
     npm install
 
-Running Tests Locally
----------------------
+## Setting Test Parameters
+
+
+The following paramaters can be set:
+
+| Parameter       | Description                                                                 |
+|-----------------|-----------------------------------------------------------------------------|
+| seleniumAddress | The address of the selenium server to execute on                            |
+| pncUiAddress    | The address of the PNC UI to test                                           |
+| pncRestAddress  | The PNC REST API backing the above UI (necessary for verifying some tests)  |
+| pncUser         | The username to run tests as                                                |
+| pncPassword     | the password to login with                                                  |
+
+To set the parameters use:
+
+    npm config set pnc-ui-release-tests:<key> <value>
+
+Example:
+
+    npm config set pnc-ui-release-tests:seleniumAddress http://localhost:4444
+
+## Running Tests Locally
 
 ### Setup
 
-1) Set addresses of APIs to test against:
-
-    npm config set pnc-ui-release-tests:pncUiAddress <pnc_web_ui_url>
-    npm config set pnc-ui-release-tests:pncRestAddress <pnc_REST_url>
+1) Set parameters as [described above](#setting-test-parameters) except _seleniumAddress_ - ignore that param.
 
 2) Update selenium webdriver:
 
@@ -49,20 +63,21 @@ Example:
 
     npm run test-suite --specs=tests/release/scenario1.spec.js,tests/environment.spec.js
 
-Running Tests on CI
--------------------
+## Running Tests on CI
 
-### Setup
+In your CI script you will want to:
 
-1) Set addresses of APIs to test against:
+1) Set all params as [described above](#setting-test-parameters)
 
-    npm config set pnc-ui-release-tests:seleniumAddress <selenium_server_url>
+2) Execute the release test suite:
 
-    npm config set pnc-ui-release-tests:pncUiAddress <pnc_web_ui_url>
-    npm config set pnc-ui-release-tests:pncRestAddress <pnc_REST_url>
+    npm run test-suite:release
 
-Developing Tests
-----------------
+You can also use the environment tests to check compatibility of the CI environment:
+
+    npm run test-suite:environment
+
+## Developing Tests
 
 _To be added later_
 
