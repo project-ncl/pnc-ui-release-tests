@@ -1,0 +1,41 @@
+{
+  "name": "pnc-ui-release-tests",
+  "version": "1.4.0",
+  "description": "Automated release tests for PNC through Web UI",
+  "config": {
+    "seleniumAddress": "http://localhost:4444/wd/hub",
+    "pncUiAddress": "http://localhost:9000",
+    "pncRestAddress": "http://localhost:9000/rest",
+    "pncUser": "user",
+    "pncPassword": "password"
+  },
+  "scripts": {
+    "test": "npm run lint",
+    "test-suite": "protractor protractor.config.js",
+    "test-suite:environment": "npm run test-suite -- --suite=environment",
+    "test-suite:release": "npm run test-suite -- --suite=release",
+    "lint": "eslint src/**/*.js tests/**/*.js protractor.config.js",
+    "webdriver": "./node_modules/protractor/bin/webdriver-manager",
+    "webdriver:update": "npm run webdriver -- update",
+    "webdriver:start": "npm run webdriver -- start"
+
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/project-ncl/pnc-ui-release-tests.git"
+  },
+  "author": "Alex Creasy",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/project-ncl/pnc-ui-release-tests/issues"
+  },
+  "homepage": "https://github.com/project-ncl/pnc-ui-release-tests#readme",
+  "dependencies": {
+    "npm": "^6.3.0",
+    "node": "^9.7.1",
+    "protractor": "^5.4.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.3.0"
+  }
+}
