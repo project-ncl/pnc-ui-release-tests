@@ -12,7 +12,11 @@
     "test-suite": "protractor protractor.config.js",
     "test-suite:environment": "npm run test-suite -- --suite=environment",
     "test-suite:release": "npm run test-suite -- --suite=release",
-    "lint": "eslint src/**/*.js tests/**/*.js protractor.config.js"
+    "lint": "eslint src/**/*.js tests/**/*.js protractor.config.js",
+    "webdriver": "./node_modules/protractor/bin/webdriver-manager",
+    "webdriver:update": "npm run webdriver -- update",
+    "webdriver:start": "npm run webdriver -- start"
+
   },
   "repository": {
     "type": "git",
