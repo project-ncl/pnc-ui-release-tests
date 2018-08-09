@@ -1,8 +1,9 @@
-const config = require('./src/config');
+// const config = require('./src/config');
 
 exports.config = {
     framework: 'jasmine',
-    seleniumAddress: config.seleniumAddress,
+    seleniumServerJar: '/usr/bin/selenium-server-standalone-3.14.0.jar',
+    chromeDriver: '/usr/bin/chromedriver',
     capabilities: {
         'browserName': 'chrome'
     },
