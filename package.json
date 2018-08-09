@@ -4,11 +4,13 @@
   "description": "Automated release tests for PNC through Web UI",
   "scripts": {
     "test": "npm run lint",
-    "test-suite": "protractor protractor.config.js",
+    "test-suite": "protractor protractor.config.js --specs=tests/environment.spec.js",
+    "test-suite:local": "npm run webdriver:update && npm run webdriver:start && npm run test-suite; npm run webdriver:shutdown",
     "lint": "eslint src/**/*.js tests/**/*.js protractor.config.js",
     "webdriver": "./node_modules/protractor/bin/webdriver-manager",
     "webdriver:update": "npm run webdriver -- update",
-    "webdriver:start": "npm run webdriver -- start"
+    "webdriver:start": "npm run webdriver -- start --detach",
+    "webdriver:shutdown": "npm run webdriver -- shutdown"
   },
   "repository": {
     "type": "git",
