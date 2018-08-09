@@ -2,23 +2,13 @@
   "name": "pnc-ui-release-tests",
   "version": "1.4.0",
   "description": "Automated release tests for PNC through Web UI",
-  "config": {
-    "seleniumAddress": "http://localhost:4444/wd/hub",
-    "pncUiAddress": "http://localhost:9000",
-    "pncRestAddress": "http://localhost:9000/rest",
-    "pncUser": "user",
-    "pncPassword": "password"
-  },
   "scripts": {
     "test": "npm run lint",
     "test-suite": "protractor protractor.config.js",
-    "test-suite:environment": "npm run test-suite -- --suite=environment",
-    "test-suite:release": "npm run test-suite -- --suite=release",
     "lint": "eslint src/**/*.js tests/**/*.js protractor.config.js",
     "webdriver": "./node_modules/protractor/bin/webdriver-manager",
     "webdriver:update": "npm run webdriver -- update",
     "webdriver:start": "npm run webdriver -- start"
-
   },
   "repository": {
     "type": "git",
