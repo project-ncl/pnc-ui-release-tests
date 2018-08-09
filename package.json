@@ -2,13 +2,17 @@
   "name": "pnc-ui-release-tests",
   "version": "1.4.0",
   "description": "Automated release tests for PNC through Web UI",
+  "config": {
+    "protractorConf": "protractor.config.js"
+  },
   "scripts": {
+    "postinstall": "npm run webdriver:update",
     "test": "npm run lint",
-    "test-suite": "protractor protractor.config.js",
+    "test-suite": "protractor $npm_package_config_protractorConf --specs=$npm_package_config_specs --suites=$npm_package_config_suites; npm run webdriver:shutdown",
     "lint": "eslint src/**/*.js tests/**/*.js protractor.config.js",
     "webdriver": "./node_modules/protractor/bin/webdriver-manager",
     "webdriver:update": "npm run webdriver -- update",
-    "webdriver:start": "npm run webdriver -- start"
+    "webdriver:shutdown": "npm run webdriver -- shutdown"
   },
   "repository": {
     "type": "git",
