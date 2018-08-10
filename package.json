@@ -7,12 +7,11 @@
   },
   "scripts": {
     "test": "npm run lint",
-    "test-suite": "protractor $npm_package_config_protractorConf --specs=$npm_package_config_specs --suites=$npm_package_config_suites",
-    "test-suite:dev": "protractor $npm_package_config_protractorConf --specs=$npm_package_config_specs --suites=$npm_package_config_suites; npm run webdriver:shutdown",
-    "lint": "eslint src/**/*.js tests/**/*.js protractor.config.js",
-    "webdriver": "./node_modules/protractor/bin/webdriver-manager",
-    "webdriver:update": "npm run webdriver -- update",
-    "webdriver:shutdown": "npm run webdriver -- shutdown"
+    "integration-test": "protractor $npm_package_config_protractorConf",
+    "integration-test:specs": "npm run integration-test -- --specs",
+    "integration-test:suite": "npm run integration-test -- --suite",
+    "postintegration-test": "webdriver-manager shutdown",
+    "lint": "eslint src/**/*.js tests/**/*.js protractor.config.js"
   },
   "repository": {
     "type": "git",
