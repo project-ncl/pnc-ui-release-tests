@@ -1,6 +1,8 @@
 const config = require('../config');
 
+const PATH_PREFIX = '#';
 const LOGIN_TIMEOUT = 20000;
+
 
 /**
  * Base class for other page objects to extend.
@@ -13,7 +15,13 @@ class Page {
      * @param {string} path the path fragment of the url to the page 
      */
     constructor(path) {
-        this.url = config.pncUiAddress + path;
+        let fullPath = `${PATH_PREFIX}${path}`;
+        
+        if (config.pncUiAddress.endsWith('/')) {
+            fullPath = `/${fullPath}`;
+        }
+        
+        this.url = `${config.pncUiAddress}${fullPath}`;
     }
 
     /**
@@ -34,9 +42,14 @@ class Page {
         return browser.getTitle();
     }
 
-
+    /**
+     * Logs in as the configured username and password.
+     * 
+     * @async
+     * @returns {void}
+     */
     async login() {
-        let redirectUrl = await browser.driver.getCurrentUrl();
+        const redirectUrl = await browser.driver.getCurrentUrl();
         
         await browser.waitForAngularEnabled(false);
         await element(by.id('login-link')).click();

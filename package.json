@@ -11,7 +11,7 @@
     "integration-test:specs": "npm run integration-test -- --specs",
     "integration-test:suite": "npm run integration-test -- --suite",
     "webdriver": "webdriver-manager",
-    "lint": "eslint src/**/*.js tests/**/*.js protractor.config.js"
+    "lint": "eslint src{,/**}/*.js tests{,/**}/*.js protractor.config.js"
   },
   "repository": {
     "type": "git",

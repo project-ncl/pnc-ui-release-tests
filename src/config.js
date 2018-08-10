@@ -33,7 +33,7 @@ if (typeof process.env.npm_package_config_configFile !== 'undefined') {
  * Override config file values with NPM package params
  */
 overrideKeys.forEach((key) => {
-    let envKey = 'npm_package_config_' + key;
+    const envKey = `npm_package_config_${key}`;
 
     if (typeof process.env[envKey] !== 'undefined') {
         config[key] = process.env[envKey];
@@ -45,20 +45,20 @@ overrideKeys.forEach((key) => {
  */
 requiredKeys.forEach(key => {
     if (typeof config[key] === 'undefined') {
-        throw new Error('Required parameter ' + key + ' is undefined, see README for instructions on how to set this');
+        throw new Error(`Required parameter ${key} is undefined, see README for instructions on how to set this`);
     }
 });
 
 /**
  * Log config file masking password field
  */
-let copy = Object.assign(config);
+const copy = Object.assign(config);
 
 if (typeof config.pncPassword !== 'undefined') {
     copy.pncPassword = config.pncPassword.replace(/./ug, '*');
 }
 
-console.info('Using Config:\n' + JSON.stringify(copy, null, 4));
+console.info(`Using Config:\n${JSON.stringify(copy, null, 4)}`);
 
 
 module.exports = config;
