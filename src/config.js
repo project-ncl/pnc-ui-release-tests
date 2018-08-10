@@ -1,8 +1,15 @@
 /* eslint no-process-env: "off" */ 
 const fs = require('fs');
 
-// properties that can be overridden by npm config values, allows them to be set
-// as command line args. 
+// mandatory config values
+const requiredKeys = [
+    'pncUiAddress',
+    'pncRestAddress',
+    'pncUser',
+    'pncPassword'
+];
+
+// properties that can be overridden by npm config values
 const overrideKeys = [
     'seleniumAddress',
     'seleniumServerJar',
@@ -15,10 +22,16 @@ const overrideKeys = [
 
 let config = {};
 
-if (process.env.npm_package_config_configFile) {
+/**
+ * Load config file if supplied
+ */
+if (typeof process.env.npm_package_config_configFile !== 'undefined') {
     config = JSON.parse(fs.readFileSync(process.env.npm_package_config_configFile));
 }
 
+/**
+ * Override config file values with NPM package params
+ */
 overrideKeys.forEach((key) => {
     let envKey = 'npm_package_config_' + key;
 
@@ -27,11 +40,25 @@ overrideKeys.forEach((key) => {
     } 
 });
 
-if (typeof config.pncPassword !== 'undefined') {
-    const copy = Object.assign(config);
+/**
+ * Validate mandatory config values
+ */
+requiredKeys.forEach(key => {
+    if (typeof config[key] === 'undefined') {
+        throw new Error('Required parameter ' + key + ' is undefined, see README for instructions on how to set this');
+    }
+});
 
+/**
+ * Log config file masking password field
+ */
+let copy = Object.assign(config);
+
+if (typeof config.pncPassword !== 'undefined') {
     copy.pncPassword = config.pncPassword.replace(/./ug, '*');
-    console.log('config:\n' + JSON.stringify(copy, undefined, 4));
 }
+
+console.info('Using Config:\n' + JSON.stringify(copy, null, 4));
+
 
 module.exports = config;
