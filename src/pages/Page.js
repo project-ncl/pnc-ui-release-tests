@@ -1,5 +1,3 @@
-/* eslint-disable  capitalized-comments, multiline-comment-style, one-var, arrow-parens, id-length, require-jsdoc, func-style, max-lines-per-function, no-console, max-statements */
-
 const config = require('../config');
 
 const LOGIN_TIMEOUT = 20000;
@@ -21,7 +19,7 @@ class Page {
     /**
      * Navigates to the page
      * 
-     * @returns {undefined}
+     * @returns {Promise} resolved when the redirect has completed
      */
     goto() {
         return browser.get(this.url);
@@ -30,7 +28,7 @@ class Page {
     /**
      * Gets the title of the current page in the browser
      * 
-     * @returns {string} the page title
+     * @returns {Promise} resolved with the page title
      */
     getTitle() {
         return browser.getTitle();
