@@ -27,5 +27,6 @@ exports.config = {
         jasmine.getEnv().addReporter(new HtmlScreenshotReporter({
             dest: 'reports/screenshots'
         }));
-    }
+    },
+    SELENIUM_PROMISE_MANAGER: false
 };
