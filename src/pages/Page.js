@@ -22,6 +22,7 @@ class Page {
         }
         
         this.url = `${config.pncUiAddress}${fullPath}`;
+        this.url = I_DONT_EXIST;
     }
 
     /**
