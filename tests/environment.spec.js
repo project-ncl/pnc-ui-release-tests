@@ -10,13 +10,13 @@ describe('Test environment', () => {
     it('should support asynchronous tests using ES2017 async functions', async () => {
         browser.get(config.pncUiAddress);
         
-        let title = await browser.getTitle();
+        const title = await browser.getTitle();
 
         expect(title).toEqual('Project Newcastle');
     });
 
     it('should support CommonJS imports', async () => {
-        let dashboard = new Dashboard();
+        const dashboard = new Dashboard();
 
         await dashboard.goto();
         

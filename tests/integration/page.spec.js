@@ -3,10 +3,10 @@ const Page = require('../../src/pages/Page');
 
 
 describe('A page', () => {
-    let page = new Page('/#/');
+    let page = new Page('/');
     
     beforeAll(async () => {
-        page = new Page('/#/');
+        page = new Page('/');
         await page.goto();
     });
 
@@ -19,7 +19,7 @@ describe('A page', () => {
     it('should be able to login', async () => {
         await page.login();
 
-        let text = await element(by.binding('authCtrl.username')).getText();
+        const text = await element(by.binding('authCtrl.username')).getText();
 
         expect(text).toEqual(config.pncUser);
     });
