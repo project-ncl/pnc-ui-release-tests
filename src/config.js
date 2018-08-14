@@ -1,64 +1,50 @@
 /* eslint no-process-env: "off" */ 
 const fs = require('fs');
+const {isDefined, isUndefined, prettyPrint, maskProperties} = require('./utils');
+const snakeCase = require('lodash.snakecase');
 
-// mandatory config values
-const requiredKeys = [
-    'pncUiAddress',
-    'pncRestAddress',
-    'pncUser',
-    'pncPassword'
-];
-
-// properties that can be overridden by npm config values
-const overrideKeys = [
-    'seleniumAddress',
-    'seleniumServerJar',
-    'chromeDriver',
-    'pncUiAddress',
-    'pncRestAddress',
-    'pncUser',
-    'pncPassword'
-];
-
-let config = {};
+let configFile;
 
 /**
  * Load config file if supplied
  */
-if (typeof process.env.npm_package_config_configFile !== 'undefined') {
-    config = JSON.parse(fs.readFileSync(process.env.npm_package_config_configFile));
-}
-
-/**
- * Override config file values with NPM package params
- */
-overrideKeys.forEach((key) => {
-    const envKey = `npm_package_config_${key}`;
-
-    if (typeof process.env[envKey] !== 'undefined') {
-        config[key] = process.env[envKey];
-    } 
-});
-
-/**
- * Validate mandatory config values
- */
-requiredKeys.forEach(key => {
-    if (typeof config[key] === 'undefined') {
-        throw new Error(`Required parameter ${key} is undefined, see README for instructions on how to set this`);
+if (isDefined(process.env.CONFIG_FILE)) {
+    try {
+        configFile = JSON.parse(fs.readFileSync(process.env.CONFIG_FILE));
+    } catch (error) {
+        console.error(`Error loading config file: ${process.env.CONFIG_FILE} Cause: ${error}`);
+        throw error;
     }
-});
-
-/**
- * Log config file masking password field
- */
-const copy = Object.assign(config);
-
-if (typeof config.pncPassword !== 'undefined') {
-    copy.pncPassword = config.pncPassword.replace(/./ug, '*');
 }
 
-console.info(`Using Config:\n${JSON.stringify(copy, null, 4)}`);
+function getProperty(name, mandatory = false) {
+    let value;
+    const envName = snakeCase(name).toUpperCase();
+
+    if (isDefined(configFile) && isDefined(configFile[name])) {
+        value = configFile[name];
+    } else if (isDefined(process.env[envName])) {
+        value = process.env[envName];    
+    }
+    
+    if (mandatory && isUndefined(value)) {
+        throw new Error(`Required configuration property ${name} is undefined`);
+    }
+
+    return value;
+}
 
 
-module.exports = config;
+exports.seleniumAddress = getProperty('seleniumAddress');
+exports.seleniumServerJar = getProperty('seleniumServerJar');
+exports.chromeDriver = getProperty('chromeDriver');
+exports.pncUiAddress = getProperty('pncUiAddress', true);
+exports.pncRestAddress = getProperty('pncRestAddress', true);
+exports.keycloakAddress = getProperty('keycloakAddress', true);
+exports.pncUser = getProperty('pncUser', true);
+exports.pncPassword = getProperty('pncPassword', true);
+
+
+const masked = maskProperties(exports, 'pncPassword');
+
+console.info('Using configuration:\n', prettyPrint(masked));
