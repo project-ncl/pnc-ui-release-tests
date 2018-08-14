@@ -6,7 +6,7 @@ class Dashboard extends Page {
      *  Constructs a new Dashboard
      */
     constructor() {
-        super('/');
+        super('/')
     }
 }
 
