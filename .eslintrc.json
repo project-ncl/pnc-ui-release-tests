@@ -9,10 +9,7 @@
     "extends": "eslint:recommended",
     "parserOptions": {
         "ecmaVersion": 2017,
-        "sourceType": "script",
-        "ecmaFeatures": {
-            "experimentalObjectRestSpread": true
-        }
+        "sourceType": "script"
     },
     "rules": {
         "accessor-pairs": "error",
@@ -251,7 +248,6 @@
         ],
         "prefer-destructuring": "error",
         "prefer-numeric-literals": "error",
-        "prefer-object-spread": "error",
         "prefer-promise-reject-errors": "error",
         "prefer-reflect": "error",
         "prefer-rest-params": "error",

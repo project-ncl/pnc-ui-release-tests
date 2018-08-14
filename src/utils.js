@@ -31,7 +31,7 @@ exports.prettyPrint = object => JSON.stringify(object, null, 4);
  * @returns {Object} A shallow copy of the object with the given fields masked.
  */
 exports.maskProperties = (object, ...properties) => {
-    const masked = {...object};
+    const masked = Object.assign({}, object);
 
     properties.forEach(property => {
         if (exports.isDefined(masked[property])) {
