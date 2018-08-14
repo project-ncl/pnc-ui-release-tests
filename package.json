@@ -25,6 +25,7 @@
   "homepage": "https://github.com/project-ncl/pnc-ui-release-tests#readme",
   "dependencies": {
     "jasmine-reporters": "^2.3.2",
+    "lodash.snakecase": "^4.1.1",
     "node": "^9.7.1",
     "npm": "^6.3.0",
     "protractor": "^5.4.0",

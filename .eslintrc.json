@@ -8,7 +8,8 @@
     },
     "extends": "eslint:recommended",
     "parserOptions": {
-        "ecmaVersion": 2017
+        "ecmaVersion": 2017,
+        "sourceType": "script"
     },
     "rules": {
         "accessor-pairs": "error",
@@ -127,7 +128,6 @@
             "error", 
             3
         ],
-        "max-statements": "error",
         "max-statements-per-line": "error",
         "multiline-ternary": "error",
         "new-cap": "error",
@@ -248,7 +248,6 @@
         ],
         "prefer-destructuring": "error",
         "prefer-numeric-literals": "error",
-        "prefer-object-spread": "error",
         "prefer-promise-reject-errors": "error",
         "prefer-reflect": "error",
         "prefer-rest-params": "error",
