@@ -5,15 +5,15 @@ const testParams = require('./params');
 
 
 exports.config = {
-    allScriptsTimeout: 100000,
+    allScriptsTimeout: 10 * 60 * 1000,
     capabilities: {
         'browserName': 'chrome'
     },
     framework: 'jasmine',
-    getPageTimeout: 20000,
+    getPageTimeout: 20 * 1000,
     jasmineNodeOpts: {
         showColors: true,
-        defaultTimeoutInterval: 100000
+        defaultTimeoutInterval: 10 * 60 * 1000
     },
     onPrepare: () => {
         browser.driver.manage().window().setSize(1920, 1080);
