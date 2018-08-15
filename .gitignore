@@ -107,7 +107,8 @@ GitHub.sublime-settings
 
 ### VisualStudioCode ###
 .vscode/*
-*.code-workspace
+!.vscode/launch.json
+!.vscode/tasks.json
 
 # Jasmine reports
 reports
