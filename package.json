@@ -11,6 +11,7 @@
     "integration-test:specs": "npm run integration-test -- --specs",
     "integration-test:suite": "npm run integration-test -- --suite",
     "webdriver": "webdriver-manager",
+    "webdriver:terminate-all": "ps x | grep chromedriver | grep -v grep | awk '{print $1}' | xargs kill -2; ps x | grep chromedriver | grep -v grep; test $? -eq 1",
     "lint": "eslint src{,/**}/*.js tests{,/**}/*.js protractor.config.js"
   },
   "repository": {
@@ -26,8 +27,8 @@
   "dependencies": {
     "jasmine-reporters": "^2.3.2",
     "lodash.snakecase": "^4.1.1",
-    "node": "^9.7.1",
-    "npm": "^6.3.0",
+    "node": "^10.8.0",
+    "npm": "^6.2.0",
     "protractor": "^5.4.0",
     "protractor-jasmine2-screenshot-reporter": "^0.5.0"
   },

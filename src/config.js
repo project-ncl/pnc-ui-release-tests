@@ -38,6 +38,7 @@ function getProperty(name, mandatory = false) {
 exports.seleniumAddress = getProperty('seleniumAddress');
 exports.seleniumServerJar = getProperty('seleniumServerJar');
 exports.chromeDriver = getProperty('chromeDriver');
+exports.directConnect = Boolean(getProperty('directConnect'));
 exports.pncUiAddress = getProperty('pncUiAddress', true);
 exports.pncRestAddress = getProperty('pncRestAddress', true);
 exports.keycloakAddress = getProperty('keycloakAddress', true);

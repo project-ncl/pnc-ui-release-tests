@@ -7,6 +7,7 @@ exports.config = {
     seleniumAddress: config.seleniumAddress,
     seleniumServerJar: config.seleniumServerJar,
     chromeDriver: config.chromeDriver,
+    directConnect: config.directConnect,
     capabilities: {
         'browserName': 'chrome'
     },
