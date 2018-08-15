@@ -1,0 +1,4 @@
+{
+    "release": "tests/release/*.spec.js",
+    "integration": "tests/integration/*.spec.js"
+}

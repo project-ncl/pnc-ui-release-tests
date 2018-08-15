@@ -1,23 +1,19 @@
-const config = require('./src/config');
 const JasmineReporters = require('jasmine-reporters');
 const HtmlScreenshotReporter = require('protractor-jasmine2-screenshot-reporter');
+const testSuites = require('./suites.json');
+const testParams = require('./params');
+
 
 exports.config = {
-    framework: 'jasmine',
-    seleniumAddress: config.seleniumAddress,
-    seleniumServerJar: config.seleniumServerJar,
-    chromeDriver: config.chromeDriver,
-    directConnect: config.directConnect,
+    allScriptsTimeout: 100000,
     capabilities: {
         'browserName': 'chrome'
     },
-    suites: {
-        release: 'tests/release/*.spec.js',
-        integration: 'tests/integration/*.spec.js'
-    },
+    framework: 'jasmine',
+    getPageTimeout: 20000,
     jasmineNodeOpts: {
         showColors: true,
-        defaultTimeoutInterval: 30000
+        defaultTimeoutInterval: 100000
     },
     onPrepare: () => {
         browser.driver.manage().window().setSize(1920, 1080);
@@ -29,5 +25,7 @@ exports.config = {
             dest: 'reports/screenshots'
         }));
     },
-    SELENIUM_PROMISE_MANAGER: false
+    params: testParams,
+    SELENIUM_PROMISE_MANAGER: false,
+    suites: testSuites
 };

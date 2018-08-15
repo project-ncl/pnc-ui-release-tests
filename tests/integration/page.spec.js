@@ -1,4 +1,3 @@
-const config = require('../../src/config');
 const Page = require('../../src/pages/Page');
 
 
@@ -21,6 +20,6 @@ describe('A page', () => {
 
         const text = await element(by.binding('authCtrl.username')).getText();
 
-        expect(text).toEqual(config.pncUser);
+        expect(text).toEqual(browser.params.pncUser);
     });
 });

@@ -1,5 +1,3 @@
-const config = require('../config');
-
 const PATH_PREFIX = '#';
 const LOGIN_TIMEOUT = 20000;
 
@@ -17,11 +15,11 @@ class Page {
     constructor(path) {
         let fullPath = `${PATH_PREFIX}${path}`;
         
-        if (config.pncUiAddress.endsWith('/')) {
+        if (browser.params.pncUiAddress.endsWith('/')) {
             fullPath = `/${fullPath}`;
         }
         
-        this.url = `${config.pncUiAddress}${fullPath}`;
+        this.url = `${browser.params.pncUiAddress}${fullPath}`;
     }
 
     /**
@@ -54,10 +52,10 @@ class Page {
         await browser.waitForAngularEnabled(false);
         await element(by.id('login-link')).click();
 
-        await browser.wait(protractor.ExpectedConditions.urlContains(config.keycloakAddress), LOGIN_TIMEOUT);
+        await browser.wait(protractor.ExpectedConditions.urlContains(browser.params.keycloakAddress), LOGIN_TIMEOUT);
 
-        await element(by.id('username')).sendKeys(config.pncUser);
-        await element(by.id('password')).sendKeys(config.pncPassword);
+        await element(by.id('username')).sendKeys(browser.params.pncUser);
+        await element(by.id('password')).sendKeys(browser.params.pncPassword);
         await element(by.id('kc-login')).click();
 
         
